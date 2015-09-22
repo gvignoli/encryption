@@ -8,7 +8,7 @@ import java.io.*;
 
 /**
  *
- * @author guy
+ * @author guy vignoli
  */
 public class Encrypt {
     /**
