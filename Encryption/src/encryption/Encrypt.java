@@ -22,15 +22,28 @@ public class Encrypt {
         String key = readKey();
         //System.out.println(inputText);
         String stripText = preproc(inputText);
-        vigEnc(stripText);
+        vigEnc(stripText, key);
+        
     }
-    public static String vigEnc(String stripText){
+    public static String vigEnc(String stripText, String key){
+        System.out.println("Vigener Cipher encryption...");
         String ciphText = "";
+        int tempIndex=0;
+        int keyIndex = 0;
         int offset = 65; //offsetting ascii table to make A=0 ... Z=25
         //System.out.println((int)stripText.charAt(0)); //just checking ascii conversion
-        for(int i=0; i<=stripText.length(); i++){
+        for(int i=0; i<stripText.length(); i++){
             
-        }
+            tempIndex = (int)stripText.charAt(i) - offset;//getting location of each char in plaintext
+            if(i>=key.length()){
+                keyIndex = 0;
+            }
+            tempIndex += (int)key.charAt(keyIndex); //adding the location of key to plaintext 
+            tempIndex = tempIndex%26; // after adding each index, mod 26 to get num of cipher char
+            ciphText += Character.toString((char)tempIndex);
+            keyIndex++;
+        }   
+        System.out.println(ciphText);
         return ciphText;
     }
     
